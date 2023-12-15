@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Color Picker</title>
+<script language="JavaScript">
+
+//function used to get color # from user input in three boxes
+function getColor(){
+	var red = parseInt(document.theForm.elements[0].value,16);
+	var green = parseInt(document.theForm.elements[1].value,16);
+	var blue = parseInt(document.theForm.elements[2].value,16);
+	if (isNaN(red) || red < 00 || red > 255 || red === ""){
+		alert("Enter a valid hex value between 00 and ff for red");
+		return;
+	}
+	if (isNaN(green) || green < 0 || green > 255 || green === ""){
+		alert("Enter a valid hex value between 00 and ff for green");
+		return;
+	}
+	if (isNaN(blue) || blue < 0 || blue > 255 || blue === ""){
+		alert("Enter a valid hex value between 00 and ff for blue");
+		return;
+	}
+	var myColor = "#" + red.toString(16).padStart(2, '0') + green.toString(16).padStart(2, '0') + blue.toString(16).padStart(2, '0');
+	document.body.style.background = myColor;
+	myColor = getColorName(myColor);
+	document.getElementById("ColorName").innerHTML = myColor;
+}
+//function used to label 6 chosen colors
+function getColorName(hexcode){
+	if (hexcode.toLowerCase() == "#00ffff"){
+		return "Aqua";
+	}
+	if (hexcode.toLowerCase() == "#0000ff"){
+		return "Blue";
+	}
+	if (hexcode.toLowerCase() == "#ff0000"){
+		return "Red";
+	}
+	if (hexcode.toLowerCase() == "#00ff00"){
+		return "Green";
+	}
+	if (hexcode.toLowerCase() == "#fffff00"){
+		return "Yellow";
+	}
+	if (hexcode.toLowerCase() == "#663399"){
+		return "RebeccaPurple";
+	}
+	return hexcode;
+}
+</script>
+</head>
+<body bgcolor = "darksalmon">
+<H2>
+	Color Picker!
+</H2>
+Selected Color:
+<div id = "ColorName">
+</div>
+<form name="theForm">
+Enter a 2 digit hex value (00-ff) in each box:<br>
+<input type="text" >Red<br>
+<input type="text" >Green<br>
+<input type="text" >Blue<br>
+<input type="button" value="Pick Color" onClick="getColor()">
+<p id = "answer" ></p>
+</form>
+</body>
+</html>
